@@ -106,12 +106,20 @@ public class TicketMachine
      * vacia la maquina si no hay operaciones
      */
 
-    public int empyMachine()
-    {
-        int totalDevuelto;
-        totalDevuelto = balance + total;
-        total=0;
-        balance=0;
-        return totalDevuelto;
+    public int emptyMachine()    
+    { 
+        if(balance == 0)
+        {  
+            int devolucionTotalDinero;
+            devolucionTotalDinero = total;
+            total = 0;
+            return devolucionTotalDinero;
+        }
+        else
+        {
+            System.out.println("WARRNING¡¡ No se puede vacear");
+            return -1;
+        }
+ 
     }
 }
