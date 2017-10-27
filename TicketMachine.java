@@ -17,18 +17,22 @@ public class TicketMachine
     private int balance;
     // The total amount of money collected by this machine.
     private int total;
-    
+    //billete premiado
     private boolean premio;
+    //numero billetes
+    private int numeroBillete;
 
     /**
      * Create a machine that issues tickets of the given price.
      */
-    public TicketMachine(int cost, boolean billetePremio )
+    public TicketMachine(int cost, boolean billetePremio, int numBillete )
     {
-            price = cost;
-            balance = 0;
-            total = 0;
-            premio = billetePremio;
+        price = cost;
+        balance = 0;
+        total = 0;
+        premio = billetePremio;
+        numeroBillete = 5 * cost;
+
     }
 
     /**
@@ -54,15 +58,20 @@ public class TicketMachine
      */
     public void insertMoney(int amount)
     {
-        if(amount > 0) {   
-            balance = balance + amount;
+        if (numeroBillete > total){
+            if (amount > 0) {   
+                balance = balance + amount;
+            }
+            else {
+                System.out.println("Use a positive amount rather than: " +
+                    amount);
 
+            }
         }
-        else {
-            System.out.println("Use a positive amount rather than: " +
-                amount);
-
-        }
+            else {
+                System.out.println("vendidos todos los billetes");
+            }
+        
     }
 
     /**
@@ -80,12 +89,12 @@ public class TicketMachine
             System.out.println("# " + price + " cents.");
             System.out.println("##################");
             System.out.println();
-                   if(premio ==true)
-                   {
-                       System.out.println("##################");
-                       System.out.println("tiket premiado");
-                       System.out.println("##################");
-                    }
+            if(premio ==true)
+            {
+                System.out.println("#****************#");
+                System.out.println("tiket premiado");
+                System.out.println("#****************#");
+            }
             // Update the total collected with the price.
             total = total + price;
             // Reduce the balance by the prince.
@@ -129,9 +138,7 @@ public class TicketMachine
         }
         return devolucionTotalDinero;
     }
-    
-    
-    
+
     /**
      * 
      */
