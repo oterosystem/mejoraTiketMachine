@@ -17,15 +17,18 @@ public class TicketMachine
     private int balance;
     // The total amount of money collected by this machine.
     private int total;
+    
+    private boolean premio;
 
     /**
      * Create a machine that issues tickets of the given price.
      */
-    public TicketMachine(int cost)
+    public TicketMachine(int cost, boolean billetePremio )
     {
-        price = cost;
-        balance = 0;
-        total = 0;
+            price = cost;
+            balance = 0;
+            total = 0;
+            premio = billetePremio;
     }
 
     /**
@@ -77,7 +80,12 @@ public class TicketMachine
             System.out.println("# " + price + " cents.");
             System.out.println("##################");
             System.out.println();
-
+                   if(premio ==true)
+                   {
+                       System.out.println("##################");
+                       System.out.println("tiket premiado");
+                       System.out.println("##################");
+                    }
             // Update the total collected with the price.
             total = total + price;
             // Reduce the balance by the prince.
@@ -108,18 +116,23 @@ public class TicketMachine
 
     public int emptyMachine()    
     { 
-        if(balance == 0)
-        {  
-            int devolucionTotalDinero;
+        int devolucionTotalDinero;
+        if(balance == 0){
+
             devolucionTotalDinero = total;
             total = 0;
-            return devolucionTotalDinero;
         }
         else
         {
             System.out.println("WARRNING¡¡ No se puede vacear");
-            return -1;
+            devolucionTotalDinero = -1;
         }
- 
+        return devolucionTotalDinero;
     }
+    
+    
+    
+    /**
+     * 
+     */
 }
